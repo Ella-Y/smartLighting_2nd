@@ -1,0 +1,387 @@
+// Update (17.11.21): Light Information Update, Schedule Management, LCQ/LTQ에 RoomID 추가
+
+//Light Registration Request
+LRQ_Data: LRQDataFormat
+{
+        "Format": "LRQ",
+        "Data": {
+                "MacAddr": "00-00-00-00-00-00",
+                "BLEMacAddr": "00-00-00-00-00-00",
+                "Property": {
+                        "Color": "24bColor", // { "BW", "12bColor", "24bColor" }
+                        "Temp": "2700K:4500K:6500K",
+                        "Lumen": 1000,
+                        "BLE": "4.1", // { "2.1", "3.0", "4.1", "4.0", "NO" }
+                        "Sensor": "Both", // { "None", "MotionOnly", "LightOnly", "Both" }
+                        "VoiceControl": "Yes", // { "Yes", "No" }
+                        "SmartControl": "Yes" // { "Yes", "No" }
+                }
+        }
+}
+//Light Registration Response
+LRS_Data: LRSDataFormat
+{
+        "Format": "LRS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "AlreadyExist", "EtcProblem" }
+        }
+}
+//Connection Check Request
+CCQ_Data: CCQDataFormat
+{
+        "Format": "CCQ",
+        "Data": {
+                "MACAddr": "00-00-00-00-00-00",
+                "Time": "2017/02/01-14:23:01",
+        }
+}
+//Connection Check Response
+CCS_Data: CCSDataFormat
+{
+        "Format": "CCS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "AlreadyExist", "EtcProblem" }
+        }
+}
+//Light Connection Request or Thing Connection Request
+LCQ_Data: LCQDataFormat
+{
+        "Format": "LCQ",
+        "Data": {
+                "RoomID": 1,
+                "LightID": 1,
+                "MACAddr": "00-00-00-00-00-00"
+        }
+}
+//Light Connection Response or Thing Connection Response
+LCS_Data: LCSDataFormat
+{
+        "Format": "LCS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "EtcProblem" }
+        }
+}
+//Light Control Request // (171115 : add LightID, MACAddr)
+LTQ_Data: LTQDataFormat
+{
+        "Format": "LTQ",
+        "Data": {
+                "RoomID": 1,
+                "LightID": 1,
+                "MACAddr": "00-00-00-00-00-00",
+                "Time": "2017/02/01-14:23:01",
+                "Control": {
+                        "Bright": 0, // 0-100 (percent)
+                        "Temp": "2700K:4500K:6500K",
+                        "Color": {
+                                "Red": "255",
+                                "Green": "255",
+                                "Blue": "255"
+                        },
+                        "BLE": {
+                                "Status": "OFF", // { "ON", "OFF" }
+                                "Connect": "010-1234-1234" // { "None", "Phone Number" }
+                        },
+                        "Sensor": "BothOn" //, { "OFF", "MotionOnly", "LightOnly", "BothOn" }
+						"VoiceControl": "On", // { "On","Off" }
+                        "SmartControl": "Sensor_Mode" // { "Sensor_Mode", "AI_Mode","Off" }
+                }
+        }
+}
+//Light Control Response
+LTS_Data: LTSDataFormat
+{
+        "Format": "LTS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": {
+                        "Bright": 0, // 0-100 (percent)
+                        "Temp": "2700K:4500K:6500K",
+                        "Color": {
+                                "Red": "255",
+                                "Green": "255",
+                                "Blue": "255"
+                        },
+                        "BLE": {
+                                "Status": "OFF", // { "ON", "OFF" }
+                                "Connect": "010-1234-1234" // { "None", "Phone Number" }
+                        },
+                        "Sensor": "BothOn", // { "OFF", "MotionOnly", "LightOnly", "BothOn" }
+                        "VoiceControl" : "On", // { "On", "Off" }
+						"SmartControl" : "Sensor_Mode" // { "Sensor_Mode", "AI_Mode", "Off" }
+                }
+        }
+}
+//Light Condition Update Request
+LUQ_Data: LUQDataFormat
+{
+        "Format": "LUQ",
+        "Data": {
+                "Time": "2017/02/01-14:23:01",
+                "Info": {
+                        "Bright": 0, // 0-100 (percent)
+                        "Temp": "2700K:4500K:6500K",
+                        "Color": {
+                                "Red": "255",
+                                "Green": "255",
+                                "Blue": "255"
+                        },
+                        "BLE": {
+                                "Status": "OFF", // { "ON", "OFF" }
+                                "Connect": "010-1234-1234" // { "None", "Phone Number" }
+                        },
+                        "Sensor": "BothOn", // { "OFF", "MotionOnly", "LightOnly", "BothOn" }
+                        "VoiceControl" : "On", // { "On", "Off" }
+			"SmartControl" : "Sensor_Mode" // { "Sensor_Mode", "AI_Mode", "Off" }
+                }
+        }
+}
+//Light Condition Update Response
+LUS_Data: LUSDataFormat
+{
+        "Format": "LUS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "EtcProblem" }
+        }
+}
+//User Check Request
+UCQ_Data: UCQDataFormat
+{
+        "Format": "UCQ",
+        "Data": {
+                "Time": "2017/02/01-14:23:01",
+                "UserID": "User_ID",
+                "Password": "Password"
+        }
+}
+//User Check Response
+UCS_Data: UCSDataFormat
+{
+        "Format": "UCS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "WrongPassword", "NotExist" }
+        }
+}
+//Thing Registration Request
+TRQ_Data: TRQDataFormat
+{
+        "Format": "TRQ",
+        "Data": {
+                "MacAddr": "00-00-00-00-00-00",
+                "Property": {
+                        "Type": "Sensor", // { "Sensor", "Actuator", "Etc" }
+                        "Name": "Motion" // Text String 
+                        "DataCount": 3 // 1 ~ n
+                        "DataFormat": "Integer", // { "Integer": 4B, "Real": 8B }
+                        "RefreshRate": 60, // { 0: no refresh, X: in seconds }
+                }
+        }
+}
+//Thing Registration Response
+TRS_Data: TRSDataFormat
+{
+        "Format": "TRS",
+        "Data": {
+                "ThingID": N // Integer
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "AlreadyExist", "EtcProblem" }
+        }
+}
+//Data Reception Request
+DRQ_Data: DRQDataFormat
+{
+        "Format": "DRQ",
+        "Data": {
+                "Time": "2017/02/01-14:23:01",
+                "ThingID": N,
+                "ThingData": {
+                        "Part1": 1,
+                        "Part2": 1,
+                        "Part3": 0
+                }
+        }
+}
+//Data Reception Response
+DRS_Data: DRSDataFormat
+{
+        "Format": "DRS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "AlreadyExist", "EtcProblem" }
+        }
+}
+//Thing Configuration Request
+TCQ_Data: TCQDataFormat
+{
+        "Format": "TCQ",
+        "Data": {
+                "ThingID": N,
+                "RefreshRate": 60 // { 0: no refresh, X: in seconds }
+        }
+}
+//Thing Configuration Response
+TCS_Data: TCSDataFormat
+{
+        "Format": "TCS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "Impossible", "EtcProblem" }
+        }
+}
+//Thing Actuation Request
+TAQ_Data: TAQDataFormat
+{
+        "Format": "TAQ",
+        "Data": {
+                "Time": "2017/02/01-14:23:01",
+                "ThingID": N,
+                "ThingData": {
+                        "Part1": 1,
+                        "Part2": 1,
+                        "Part3": 0
+                }
+        }
+}
+//Thing Actuation Response
+TAS_Data: TASDataFormat
+{
+        "Format": "TAS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "All Failed", "Partly Failed", "EtcProblem" }
+        }
+}
+// Light Information Update Request (Broadcast)
+LIQ_Data: LIQDataFormat
+{
+        "Format": "LIQ",
+        "Data": {
+                "RoomInfo": [
+                        {
+                                "RoomID": 1,
+                                "NickName": "큰방"
+                        },
+                        {
+                                "RoomID": 2,
+                                "NickName": "거실"
+                        }, 
+						...
+                ]
+				"LightInfo": [
+                        {
+                                "LightID": 1,
+                                "RoomID": 1,
+                                "NickName": "큰등",
+                                "MacAddr": "00-00-00-00-00-00"
+                        },
+                        {
+                                "LightID": 1,
+                                "RoomID": 2,
+                                "NickName": "작은등",
+                                "MacAddr": "00-00-00-00-00-00"
+                        }, 
+						...
+                ]
+        }
+}
+// Light Information Update Response
+LIS_Data: LISDataFormat
+{
+        "Format": "LIS",
+        "Data": {
+                "RoomID": 1,
+                "LightID": 1,
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "Conflict", "EtcProblem" }				
+        }
+}
+// Schedule Update Request
+SUQ_Data: SUQDataFormat
+{
+        "Format": "SUQ",
+        "Data": {
+                "RequestLight": {
+                        "RoomID": 1,
+                        "LightID": 1
+                },
+                "TargetLight": {
+                        "RoomID": 2,
+                        "LightID": 1
+                },
+                "Control": {
+                        "Bright": 0, // 0-100 (percent)
+                        "Temp": "2700K:4500K:6500K",
+                        "Color": {
+                                "Red": "255",
+                                "Green": "255",
+                                "Blue": "255"
+                        },
+                        "BLE": {
+                                "Status": "OFF", // { "ON", "OFF" }
+                                "Connect": "010-1234-1234" // { "None", "Phone Number" }
+                        },
+                        "Sensor": "BothOn" //, { "OFF", "MotionOnly", "LightOnly", "BothOn" }
+						"VoiceControl" : "On", // { "On", "Off" }
+						"SmartControl" : "Sensor_Mode" // { "Sensor_Mode", "AI_Mode", "Off" }
+                },
+                "Time": {
+                        "Type": "Delay", // { "Now", "Delay", "onTime", "Duration" }
+                        "Delay": 10, // unit = minutes, 0: instantly
+                        "onTime": "None", // "2017/02/01-14:23:01"
+                        "SensorBased": "Motion", // { "None", "Motion", "Light" }
+                        "Duration": 0 // unit = minutes
+                },
+                "Repeat": "None" // { "None", "Daily", "Weekdays", "Weekends", "Weekly" }
+        }
+}
+// Schedule Update Response
+SUS_Data: SUSDataFormat
+{
+        "Format": "SUS",
+        "Data": {
+                "Status": "Success", // { "Success", "Fail" }
+                "Info": "None" // { "None", "Conflict-Condition", "Conflict-Schedule", "Unclear", "EtcProblem" }				
+        }
+}
+// External Data Request
+EDQ_Data: EPQDataFormat
+{
+        "DataType": "API", // "API", "Light"
+        "APIInfo": {
+                "ExtAPIID": 1, // 1: 날씨, 2: 미세먼지
+                "ExtAPILoc": "구미",
+                "ExtAPITime": "내일"
+        },
+        "LightInfo": {
+                "LightID": 1,
+                "RoomID": 1,
+        }
+}
+// External Data Response
+EDS_Data: EPSDataFormat
+{
+        "DataType": "API",
+        "Result": "Success", // { "Success", "Fail" }
+        "APIData": {
+                "ExtAPIData": [
+                        {
+                                "DataName": "온도", //{"날씨",}
+                                "DataValue": 32.0
+                        }
+                ],
+        },
+        "LightData": {
+                "Bright": 0, // 0-100 (percent)
+                "Temp": "2700K:4500K:6500K",
+                "Color": {
+                        "Red": 255,
+                        "Green": 255,
+                        "Blue": 255
+                }
+        }
+}
